@@ -1,19 +1,20 @@
 //alternative lab instructor: tug13683
 public class Lab1{
     public static void main(String args[]){
-        /*
         for (int i = 1; i <= 100; i++){
             MyPow.countGbl = 0;
-            double product = raise(2.0, i);
-            System.out.println("Product (raise): " + product);
+            System.out.println("Product (raise): " + raise2(2.0, i));
             System.out.println("Count: " + MyPow.countGbl);
         }
-        */
-        System.out.println(raise2(2.0, 10)); 
+        
+        for (int i = 1; i <= 100; i++){
+            MyPow.countGbl = 0;
+            System.out.println("Product (raise2): " + raise2(2.0, i));
+            System.out.println("Count: " + MyPow.countGbl);
+        }
     }
 
     //not the best solution
-    
     public static double raise(double base, int exp){
         //zero to negative power returns infinity
         if (base == 0.0 && exp < 0){ 
