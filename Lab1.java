@@ -1,20 +1,22 @@
 //alternative lab instructor: tug13683
 public class Lab1{
     public static void main(String args[]){
+        //testing for first algorithm
         for (int i = 1; i <= 100; i++){
             MyPow.countGbl = 0;
-            System.out.println("Product (raise): " + raise2(2.0, i));
-            System.out.println("Count: " + MyPow.countGbl);
+            double product = raise(2.0, i);
+            System.out.println("Product: " + product + " Count: " + MyPow.countGbl);
         }
-        
-        for (int i = 1; i <= 100; i++){
+
+        //testing for second algorithm
+        for (int j = 1; j <= 100; j++){
             MyPow.countGbl = 0;
-            System.out.println("Product (raise2): " + raise2(2.0, i));
-            System.out.println("Count: " + MyPow.countGbl);
+            double product = raise2(2.0, j);
+            System.out.println("Product: " + product + " Count: " + MyPow.countGbl);
         }
     }
 
-    //not the best solution
+    //first algorithm
     public static double raise(double base, int exp){
         //zero to negative power returns infinity
         if (base == 0.0 && exp < 0){ 
@@ -36,13 +38,18 @@ public class Lab1{
         }
 
         //even
-        if (exp % 2 == 0)
+        if (exp % 2 == 0){
+            MyPow.countGbl++;
             return raise(base, exp/2) * raise(base, exp/2);
+        }
         //odd
-        else
+        else{
+            MyPow.countGbl += 2; 
             return raise(base, exp/2) * raise(base, exp/2) * base;
+        }
     }
     
+    //second algorithm
     public static double raise2(double base, int exp){
         double temp = 0.0;
         double retval = 0.0;
@@ -66,8 +73,10 @@ public class Lab1{
         }
         temp = raise2(base, exp / 2);
         retval = temp * temp; //count this multiply as explained later
+        MyPow.countGbl++;
         if (exp % 2 == 1){
             retval *= base; //count this multiply as explained later
+            MyPow.countGbl++;
         }
         return retval;
     }
